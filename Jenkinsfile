@@ -27,6 +27,7 @@ pipeline {
                     -Dsonar.projectKey=java-calculator ^
                     -Dsonar.projectName=java-calculator ^
                     -Dsonar.token=sqp_d4dea7dd5645d8d21292c3db86b582e4f744a6a7
+                    -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
                     """
                 }
             }
