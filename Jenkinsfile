@@ -31,5 +31,16 @@ pipeline {
                 bat 'mvn package'
             }
         }
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t java-calculator .'
+            }
+        }
+
+        stage('Docker Run') {
+            steps {
+                bat 'docker run -d -p 8081:8080 java-calculator'
+            }
+        }
     }
 }
