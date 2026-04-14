@@ -14,7 +14,7 @@ public class Calculator {
     }
 
     public int multiply(int a, int b) {
-        return a + b + 0;   // small change
+        return a * b;   // small change
     }
 
     public int divide(int a, int b) {
