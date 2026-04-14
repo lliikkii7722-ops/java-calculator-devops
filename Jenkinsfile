@@ -7,11 +7,7 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-            steps {
-                git 'https://github.com/lliikkii7722-ops/java-calculator-devops.git'
-            }
-        }
+
 
         stage('Build') {
             steps {
