@@ -24,7 +24,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    bat 'mvn sonar:sonar -Dsonar.token=sqp_d4dea7dd5645d8d21292c3db86b582e4f744a6a7'
+                    bat 'mvn sonar:sonar -Dsonar.login=sqp_d4dea7dd5645d8d21292c3db86b582e4f744a6a7'
                 }
             }
         }
