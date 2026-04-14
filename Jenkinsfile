@@ -6,6 +6,13 @@ pipeline {
     }
 
     stages {
+
+        stage('Clone') {
+            steps {
+                git 'https://github.com/lliikkii7722-ops/java-calculator-devops.git'
+            }
+        }
+
         stage('Build') {
             steps {
                 bat 'mvn clean compile'
@@ -21,7 +28,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:4.0.0.4121:sonar -Dsonar.projectKey=java-calculator -Dsonar.host.url=http://localhost:9000'
+                    bat 'mvn sonar:sonar -Dsonar.token=sqp_d4dea7dd5645d8d21292c3db86b582e4f744a6a7'
                 }
             }
         }
@@ -34,7 +41,13 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                bat 'docker build -t java-calculator:latest .'
+                bat 'docker build -t java-calculator .'
+            }
+        }
+
+        stage('Docker Run') {
+            steps {
+                bat 'docker run --rm java-calculator'
             }
         }
     }
