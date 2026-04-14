@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven'
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -11,6 +15,14 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'mvn test'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    bat 'mvn sonar:sonar -Dsonar.projectKey=java-calculator'
+                }
             }
         }
 
