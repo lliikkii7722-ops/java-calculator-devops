@@ -22,7 +22,12 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    bat 'mvn clean verify sonar:sonar -Dsonar.projectKey=java-calculator -Dsonar.projectName=java-calculator -Dsonar.token=sqp_d4dea7dd5645d8d21292c3db86b582e4f744a6a7'
+                    bat """
+                    mvn clean verify sonar:sonar ^
+                    -Dsonar.projectKey=java-calculator ^
+                    -Dsonar.projectName=java-calculator ^
+                    -Dsonar.login=sqp_d4dea7dd5645d8d21292c3db86b582e4f744a6a7
+                    """
                 }
             }
         }
