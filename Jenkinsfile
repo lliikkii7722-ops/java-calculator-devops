@@ -26,7 +26,8 @@ pipeline {
                     mvn clean verify sonar:sonar ^
                     -Dsonar.projectKey=java-calculator ^
                     -Dsonar.projectName=java-calculator ^
-                    -Dsonar.token=sqp_917e6dd3d6af5649795cc7d2e03a836cacaa3b57
+                    -Dsonar.host.url=http://localhost:9000 ^
+                    -Dsonar.login=sqp_d4dea7dd5645d8d21292c3db86b582e4f744a6a7 ^
                     -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
                     """
                 }
