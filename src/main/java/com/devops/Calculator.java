@@ -17,7 +17,7 @@ public class Calculator {
         return a * b;   // small change
     }
 
-    public int divide(int a, int b) {
+    public double divide(double a, double b) {
         if (b == 0) {
             throw new ArithmeticException("Cannot divide by zero");
         }

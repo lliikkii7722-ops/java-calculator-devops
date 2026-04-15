@@ -83,6 +83,18 @@
     let display = document.getElementById("display");
 
     function append(value) {
+        const operators = ['+', '-', '*', '/'];
+        const lastChar = display.value.slice(-1);
+
+        if (operators.includes(value)) {
+            if (display.value === "") return;
+
+            if (operators.includes(lastChar)) {
+                display.value = display.value.slice(0, -1) + value;
+                return;
+            }
+        }
+
         display.value += value;
     }
 
@@ -91,32 +103,31 @@
     }
 
     function calculate() {
-        let expr = display.value;
+        try {
+            let expr = display.value;
 
-        let match = expr.match(/(\d+)([+\-*/])(\d+)/);
+            if (!expr) {
+                display.value = "Error";
+                return;
+            }
 
-        if (!match) {
+            const lastChar = expr.slice(-1);
+            if (['+', '-', '*', '/'].includes(lastChar)) {
+                display.value = "Error";
+                return;
+            }
+
+            let result = Function('"use strict"; return (' + expr + ')')();
+
+            if (!isFinite(result)) {
+                display.value = "Error";
+                return;
+            }
+
+            display.value = Number(result.toFixed(8)).toString();
+        } catch (e) {
             display.value = "Error";
-            return;
         }
-
-        let a = match[1];
-        let op = match[2];
-        let b = match[3];
-
-        let operationMap = {
-            '+': 'add',
-            '-': 'subtract',
-            '*': 'multiply',
-            '/': 'divide'
-        };
-
-        fetch(`/${operationMap[op]}?a=${a}&b=${b}`)
-            .then(res => res.json())
-            .then(data => {
-                display.value = data.result;
-            })
-            .catch(() => display.value = "Error");
     }
 </script>
 
