@@ -234,3 +234,13 @@ The Kubernetes deployment was verified using kubectl commands. The pods were run
 ## Resume Point
 
 Built an end-to-end CI/CD pipeline for a Java Maven application using Jenkins, GitHub, JUnit, SonarQube, Docker, Render, and Kubernetes with automated build, test, code analysis, containerization, and deployment.
+## Author
+
+Likitha H K
+
+B.Tech Computer Science Engineering
+
+## License
+
+This project is developed for educational, research, and portfolio purposes.
+
